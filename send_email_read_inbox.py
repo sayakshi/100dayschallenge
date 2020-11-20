@@ -3,6 +3,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from environ_set import environ_set
+
 import os
 
 
@@ -12,6 +13,8 @@ username = os.environ['gmail_username']
 password = os.environ['gmail_password']
 smtphost = 'smtp.gmail.com'
 port = 587
+
+
 
 def send_email_read_inbox(text='first email from python', from_email="100days_code <codepython100@gmail.com>", subject="Hello World", to_list=None, html=None ):
 
@@ -29,15 +32,11 @@ def send_email_read_inbox(text='first email from python', from_email="100days_co
 		msg['From'] =  from_email
 		msg['To'] =",".join(to_list)
 		msg['Subject']= subject
-
-	
 		txt_part= MIMEText(text, 'plain')
 		msg.attach(txt_part)
-
 		if html !=None:
 			html_part= MIMEText("<h1>this is working</h1>", 'html')
 			msg.attach(html_part)
-
 		msg_str = msg.as_string()
 
 		try:

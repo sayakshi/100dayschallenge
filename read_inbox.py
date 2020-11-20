@@ -29,6 +29,10 @@ def read_inbox():
 			email_message = email.message_from_bytes(b)
 			for header in ['subject', 'from', 'to']:
 				print("{}: {}".format(header, email_message[header]))
+				for msg in email_message.walk():
+					print(msg.get_payload(decode=True))
+			print("=============================================")
+
 
 
 
